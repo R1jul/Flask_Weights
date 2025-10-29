@@ -1,0 +1,4 @@
+flask 
+pytest
+aws-lambda-powertools
+aws-lambda-adapter

@@ -1,4 +1,4 @@
-from code2 import code2
+from code2.code2 import code2
 
 def test_kg_lb():
     client=code2.code2.test_client()

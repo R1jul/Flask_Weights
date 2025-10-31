@@ -37,7 +37,7 @@ jobs:
       - name: Deploy to AWS Lambda
         uses: appleboy/lambda-action@v0.2.0
         with:
-          aws-region: us-east-1
-          function-name: flask_weights
-          zip-file: code.zip
+          aws_region: us-east-1
+          function_name: flask_weights
+          zip_file: code.zip
           

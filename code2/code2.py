@@ -15,11 +15,11 @@ def convert():
         
         if unit == "kg":
             result=kg_lb(value)
-        
+            message=f"{value}lb={result:.2f} lb"
 
         elif unit=="lb":
             result=lb_kg(value)
-            message=f"{value}lb={result:.2f}kg"
+            message=f"{value}lb={result:.2f} kg"
             
         else:
             return jsonify({"error" : "Unit must be kg or lb"}),400

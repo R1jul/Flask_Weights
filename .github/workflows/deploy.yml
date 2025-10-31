@@ -37,7 +37,7 @@ jobs:
         with:
           aws-region: us-east-1
           function-name: flask_weights
-          zip-file: code.zip
+          
 
     
 

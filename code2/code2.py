@@ -25,7 +25,7 @@ def convert():
             return jsonify({"error" : "Unit must be kg or lb"}),400
         
         
-        return jsonify ({"Result" : message})
+        return jsonify ({"Result" : message}),200
     
     except Exception as e:
         return jsonify ({"error" : str(e)}),400

@@ -35,14 +35,14 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
-          aws-access-key-id: ${{ secrets.AKIA47CRWWDG745N6J6M }}
-          aws-secret-access-key: ${{ secrets.rjor+8Zj6y2/VmhYGY0P4gHJmX/APg3Rw3w7R1jh }}
-          aws-region: us-east-1b
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
     
     - name: Deploy to AWS Lambda
       uses: appleboy/lambda-action@v0.2.0
       with:
-        aws-region: us-east-1b
+        aws-region: us-east-1
         function-name: flask_weights
         zip-file: flask_weights.zip
 

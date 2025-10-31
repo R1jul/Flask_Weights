@@ -19,24 +19,33 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.13'
+        python-version: '3.10'
     
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt-t
+        pip install -r requirements.txt
         zip -r code.zip
 
     
     - name: Run tests
       run: pytest -v 
+
+
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+          aws-access-key-id: ${{ secrets.AKIA47CRWWDG745N6J6M }}
+          aws-secret-access-key: ${{ secrets.rjor+8Zj6y2/VmhYGY0P4gHJmX/APg3Rw3w7R1jh }}
+          aws-region: us-east-1b
     
     - name: Deploy to AWS Lambda
       uses: appleboy/lambda-action@v0.2.0
       with:
-        aws-access-key-id: ${{ secrets.AKIA47CRWWDGRGXVQYLT }}
-        aws-secret-access-key: ${{ secrets.ZMqs/pT9Qff95KKHlTGW7fRrfnhUq75dfmKaSVKF }}
-        aws-region: us-east-1
-        function_name : flask_weights
-        zip_file : code.zip
+        aws-region: ap-south-1
+        function-name: flask_weights
+        zip-file: code.zip
+
     
 
+	

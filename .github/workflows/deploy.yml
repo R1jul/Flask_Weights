@@ -1,50 +1,43 @@
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-
-name : Deploy Flak app to Lmabda
-
+name: Deploy Flask app to Lambda
 
 on:
   push:
     branches: [ main ]
 
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name : Checkout repository
-      uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-    
-    - name: Install dependencies
-      run: |
-        pip install -r requirements.txt
-        zip -r code.zip
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    
-    - name: Run tests
-      run: pytest -v 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          zip -r code.zip .
 
+      - name: Run tests
+        run: pytest -v
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-    
-    - name: Deploy to AWS Lambda
-      uses: appleboy/lambda-action@v0.2.0
-      with:
-        aws-region: us-east-1
-        function-name: flask_weights
-        zip-file: flask_weights.zip
+
+      - name: Deploy to AWS Lambda
+        uses: appleboy/lambda-action@v0.2.0
+        with:
+          aws-region: us-east-1
+          function-name: flask_weights
+          zip-file: code.zip
 
     
 
